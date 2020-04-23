@@ -17,7 +17,7 @@
 const Route = use('Route')
 
 // Autheticação
-Route.post('/register', 'AuthController.register');
-Route.post('/login', 'AuthController.authenticate');
+Route.post('/v1/register', 'AuthController.register');
+Route.post('/v1/login', 'AuthController.authenticate');
 
 

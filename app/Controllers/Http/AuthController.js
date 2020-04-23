@@ -24,9 +24,10 @@ class AuthController {
   async authenticate({ request, auth }) {
     const { email, password } = request.all();
 
-    const token = await auth.attempt(email, password);
+    const { token } = await auth.attempt(email, password);
+    const user = await User.query().where('email', email).fetch();
 
-    return token;
+    return { token, user };
   }
 }
 

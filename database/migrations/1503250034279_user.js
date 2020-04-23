@@ -13,9 +13,9 @@ class UserSchema extends Schema {
       table.string('confirmPassword', 60).notNullable()
       table.string('firstName', 25).notNullable()
       table.string('lastName', 25).notNullable()
-      table.string('bio').notNullable()
-      table.string('github').notNullable()
-      table.string('linkedin').notNullable()
+      table.string('bio')
+      table.string('github')
+      table.string('linkedin')
       table.timestamps()
     })
   }
