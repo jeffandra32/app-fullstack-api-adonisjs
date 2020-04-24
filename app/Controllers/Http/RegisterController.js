@@ -2,7 +2,7 @@
 const User = use('App/Models/User');
 
 class RegisterController {
-  async register({ request }) {
+  async register({ request, response }) {
     const data = request.only([
       'username',
       'email',
@@ -16,8 +16,8 @@ class RegisterController {
     ]);
 
     const user = await User.create(data);
-
-    return user;
+  
+    return response.status(201).json(user);
   }
 }
 
