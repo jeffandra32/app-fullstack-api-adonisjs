@@ -17,7 +17,7 @@
 const Route = use('Route')
 
 // Autheticação
-Route.post('/v1/register', 'AuthController.register').validator('Auth');
+Route.post('/v1/register', 'RegisterController.register').validator('Register');
 Route.post('/v1/login', 'AuthController.authenticate').validator('Auth');
 Route.post('/v1/forgot', 'ForgotPasswordController.store').validator('Forgot');
 Route.post('/v1/reset', 'ResetPasswordController.store').validator('Reset');
