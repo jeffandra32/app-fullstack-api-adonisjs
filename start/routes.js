@@ -19,5 +19,7 @@ const Route = use('Route')
 // Autheticação
 Route.post('/v1/register', 'AuthController.register');
 Route.post('/v1/login', 'AuthController.authenticate');
+Route.post('/v1/forgot', 'ForgotPasswordController.store');
+Route.post('/v1/reset', 'ResetPasswordController.store');
 
 
