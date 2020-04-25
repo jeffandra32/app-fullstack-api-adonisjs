@@ -16,7 +16,7 @@ class PostSchema extends Schema {
         .onUpdate('CASCADE');
       table.string('title').notNullable();
       table.text('description').notNullable();
-      table.enu('section', [1, 2, 3, 4]).notNullable();
+      table.enu('session', [1, 2, 3, 4]).notNullable();
       table.timestamps();
     });
   }

@@ -5,7 +5,7 @@ class Post {
     return {
       title: 'required',
       description: 'required',
-      section: 'required|in:1,2,3,4',
+      session: 'required|in:1,2,3,4',
       user_id: ''
     }
   }

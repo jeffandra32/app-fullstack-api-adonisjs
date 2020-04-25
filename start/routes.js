@@ -12,13 +12,11 @@ Route.post('/v1/forgot', 'ForgotPasswordController.store').validator('Forgot');
 Route.post('/v1/reset', 'ResetPasswordController.store').validator('Reset');
 
 // User
-Route.get('/v1/users', async () => {
-  return await User.all()
-}).middleware('auth')
+Route.resource('/v1/users', 'UserController').apiOnly().middleware('auth');
 
 // Post
-Route.post('/v1/posts', 'PostController.store').middleware('auth');
+Route.resource('/v1/posts', 'PostController').apiOnly().middleware('auth');
 
-
-
+// Relationship
+Route.resource('/v1/relationship', 'RelationshipController').apiOnly().middleware('auth');
 
