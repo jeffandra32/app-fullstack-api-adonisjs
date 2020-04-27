@@ -14,9 +14,9 @@ class PostSchema extends Schema {
         .inTable('users')
         .onDelete('SET NULL')
         .onUpdate('CASCADE');
-      table.string('title').notNullable();
-      table.text('description').notNullable();
+      table.text('content').notNullable();
       table.enu('session', [1, 2, 3, 4]).notNullable();
+      table.string('image_url');
       table.timestamps();
     });
   }

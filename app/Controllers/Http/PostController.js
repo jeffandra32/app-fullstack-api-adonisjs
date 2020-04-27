@@ -3,7 +3,10 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Post = use('App/Models/Post');
 
+const Helpers = use('Helpers');
+
 class PostController {
+  
   /**
    * Create
    * @param {*} { request, response, auth }
@@ -13,7 +16,24 @@ class PostController {
   async store({ request, response, auth }) {
     const { id } = auth.user;
 
-    const data = request.only(['title', 'description', 'session']);
+    const data = request.only(['content', 'session']);
+
+    const image = request.file('image_url', {
+      types: ['image'],
+      size: '2mb',
+    });
+
+    if (image) {
+      await image.move(Helpers.tmpPath('uploads'), {
+        name: `${new Date().getTime()}.${image.subtype}`,
+      });
+
+      if (!image.moved()) {
+        return image.error();
+      }
+
+      data.image_url = image.fileName;
+    }
 
     const post = Post.create({ ...data, user_id: id });
 
@@ -27,7 +47,9 @@ class PostController {
    * @memberof PostController
    */
   async index() {
-    const post = Post.query().with('user').fetch();
+    const post = await Post.query().with('user', builder => {
+      builder.select(['id', 'avatar', 'username', 'firstName', 'lastName', 'bio', 'github', 'linkedin'])
+    }).fetch();
 
     return post;
   }
@@ -39,7 +61,12 @@ class PostController {
    * @memberof PostController
    */
   async show({ params, response }) {
-    const post = await Post.query().where('id', params.id).first();
+  
+    const post = await Post.find(params.id)
+
+    await post.load('user', builder => {
+      builder.select(['id', 'avatar', 'username', 'firstName', 'lastName', 'bio', 'github', 'linkedin'])
+    })
 
     if (!post) {
       return response

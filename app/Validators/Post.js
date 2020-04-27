@@ -3,8 +3,7 @@
 class Post {
   get rules () {
     return {
-      title: 'required',
-      description: 'required',
+      content: 'required',
       session: 'required|in:1,2,3,4',
       user_id: ''
     }
