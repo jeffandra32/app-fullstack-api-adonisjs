@@ -10,7 +10,7 @@ class RegisterController {
       'confirmPassword',
       'firstName',
       'lastName',
-      'bio',
+      'title',
       'github',
       'linkedin',
     ]);

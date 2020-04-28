@@ -7,7 +7,7 @@ class ProfileController {
     const data = request.only([
       'firstName',
       'lastName',
-      'bio',
+      'title',
       'github',
       'linkedin',
     ]);

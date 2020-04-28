@@ -12,7 +12,7 @@ class Post extends Model {
   }
 
   static get hidden() {
-    return ['image_url', 'updated_at', 'created_at'];
+    return ['image_url', 'updated_at'];
   }
 
   user() {

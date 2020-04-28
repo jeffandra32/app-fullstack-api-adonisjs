@@ -48,7 +48,7 @@ class PostController {
    */
   async index() {
     const post = await Post.query().with('user', builder => {
-      builder.select(['id', 'avatar', 'username', 'firstName', 'lastName', 'bio', 'github', 'linkedin'])
+      builder.select(['id', 'avatar', 'username', 'firstName', 'lastName', 'title', 'github', 'linkedin'])
     }).fetch();
 
     return post;
@@ -65,7 +65,7 @@ class PostController {
     const post = await Post.find(params.id)
 
     await post.load('user', builder => {
-      builder.select(['id', 'avatar', 'username', 'firstName', 'lastName', 'bio', 'github', 'linkedin'])
+      builder.select(['id', 'avatar', 'username', 'firstName', 'lastName', 'title', 'github', 'linkedin'])
     })
 
     if (!post) {

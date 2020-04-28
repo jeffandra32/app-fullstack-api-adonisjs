@@ -13,7 +13,7 @@ class UserSchema extends Schema {
       table.string('confirmPassword', 60).notNullable();
       table.string('firstName', 25).notNullable();
       table.string('lastName', 25).notNullable();
-      table.string('bio');
+      table.string('title');
       table.string('github');
       table.string('linkedin');
       table.string('avatar');
