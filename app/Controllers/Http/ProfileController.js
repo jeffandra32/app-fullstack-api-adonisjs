@@ -10,6 +10,7 @@ class ProfileController {
       'title',
       'github',
       'linkedin',
+      'bio'
     ]);
 
     const user = await auth.getUser();

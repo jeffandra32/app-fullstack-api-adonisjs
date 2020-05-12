@@ -16,6 +16,7 @@ class UserSchema extends Schema {
       table.string('title');
       table.string('github');
       table.string('linkedin');
+      table.text('bio');
       table.string('avatar');
       table.timestamps();
     });

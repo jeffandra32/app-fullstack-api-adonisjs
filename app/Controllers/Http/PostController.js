@@ -6,7 +6,6 @@ const Post = use('App/Models/Post');
 const Helpers = use('Helpers');
 
 class PostController {
-  
   /**
    * Create
    * @param {*} { request, response, auth }
@@ -47,9 +46,21 @@ class PostController {
    * @memberof PostController
    */
   async index() {
-    const post = await Post.query().with('user', builder => {
-      builder.select(['id', 'avatar', 'username', 'firstName', 'lastName', 'title', 'github', 'linkedin'])
-    }).fetch();
+    const post = await Post.query()
+      .with('user', (builder) => {
+        builder.select([
+          'id',
+          'avatar',
+          'username',
+          'firstName',
+          'lastName',
+          'title',
+          'github',
+          'linkedin',
+          'bio',
+        ]);
+      })
+      .fetch();
 
     return post;
   }
@@ -61,12 +72,21 @@ class PostController {
    * @memberof PostController
    */
   async show({ params, response }) {
-  
-    const post = await Post.find(params.id)
+    const post = await Post.find(params.id);
 
-    await post.load('user', builder => {
-      builder.select(['id', 'avatar', 'username', 'firstName', 'lastName', 'title', 'github', 'linkedin'])
-    })
+    await post.load('user', (builder) => {
+      builder.select([
+        'id',
+        'avatar',
+        'username',
+        'firstName',
+        'lastName',
+        'title',
+        'github',
+        'linkedin',
+        'bio',
+      ]);
+    });
 
     if (!post) {
       return response
